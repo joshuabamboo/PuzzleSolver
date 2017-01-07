@@ -6,4 +6,10 @@ class PuzzleSolver
     @puzzle = puzzle.split('')
     @delineator = delineator
   end
+
+  def count_character_occurances
+    count_hash = {}
+    puzzle.each {|char| count_hash[char.to_sym] = puzzle.count(char)}
+    @character_count = count_hash
+  end
 end

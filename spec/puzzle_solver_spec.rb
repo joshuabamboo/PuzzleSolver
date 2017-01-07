@@ -4,7 +4,7 @@ describe PuzzleSolver do
   let(:a_puzzle) {PuzzleSolver.new("abct_", "cccccaaaattt__b")}
   
   describe "#initialize" do
-    context "given two arguments - the puzzle and the scrammbled chars - " do 
+    context "with two arguments - the puzzle and the scrammbled chars - " do 
       it "creates readers for #scrammbled_chars and #puzzle" do 
         expect(a_puzzle).to respond_to(:scrammbled_chars, :puzzle)
       end
@@ -19,10 +19,22 @@ describe PuzzleSolver do
       end
     end
 
-    context "given three arguments" do
+    context "with three arguments" do
       it "changes the default #delineator" do 
         expect(PuzzleSolver.new('ab','abb+','+').delineator).to eq('+')
       end
+    end
+  end
+
+  describe "#count_character_occurances" do 
+    it "counts the number of times each character appears in the puzzle" do 
+      expect(a_puzzle.count_character_occurances).to eq({c: 5, a: 4, t: 3, _: 2, b: 1})
+    end
+  end
+
+  describe "#solve" do 
+    it "prints the secret word" do 
+      expect(a_puzzle.solve).to eq("The secret word is 'cat' :)")
     end
   end
 end
