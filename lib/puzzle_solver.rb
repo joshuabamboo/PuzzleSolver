@@ -13,19 +13,18 @@ class PuzzleSolver
     @character_count = count_hash
   end
 
-  def top_char_occurances
-    sorted_occurances = character_count.values.sort {|a,b| b<=>a}
-    sorted_occurances.delete_if {|occurance| occurance <= character_count[delineator.to_sym]}
+  def sort_by_occurance
+    character_count.sort_by {|_char,count| count}.reverse.to_h
   end
 
-  def convert_values_to_keys(values)
-    values.collect {|value| character_count.key(value)}
+  def delineate
+    sort_by_occurance.select{|char,count| char if count > character_count[delineator.to_sym]}
   end
 
   def solve
-    self.count_character_occurances
-    values_greater_than_delineator = self.top_char_occurances
-    secret_chars = convert_values_to_keys(values_greater_than_delineator)
-    "The secret word is '#{secret_chars.join}' :)"
+    count_character_occurances
+    word_hash = delineate
+    word = word_hash.keys.join
+    "The secret word is '#{word}' :)"
   end
 end
