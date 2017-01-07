@@ -2,6 +2,7 @@ require "puzzle_solver"
 
 describe PuzzleSolver do
   let(:a_puzzle) {PuzzleSolver.new("abct_", "cccccaaaattt__b")}
+  let(:another_puzzle) {PuzzleSolver.new("f9&igsqza_", "gggggggggggggg9&iiiiiiizzaaaaffffffqzsssss____")}
   
   describe "#initialize" do
     context "with two arguments - the puzzle and the scrammbled chars - " do 
@@ -35,6 +36,7 @@ describe PuzzleSolver do
   describe "#solve" do 
     it "prints the secret word" do 
       expect(a_puzzle.solve).to eq("The secret word is 'cat' :)")
+      expect(another_puzzle.solve).to eq("The secret word is 'gifs' :)")
     end
   end
 end
