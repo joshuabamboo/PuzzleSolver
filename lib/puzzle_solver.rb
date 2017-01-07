@@ -15,7 +15,7 @@ class PuzzleSolver
 
   def top_char_occurances
     sorted_occurances = character_count.values.sort {|a,b| b<=>a}
-    sorted_occurances.delete_if {|occurance| occurance <= character_count[delineator]}
+    sorted_occurances.delete_if {|occurance| occurance <= character_count[delineator.to_sym]}
   end
 
   def convert_values_to_keys(values)
@@ -26,6 +26,6 @@ class PuzzleSolver
     self.count_character_occurances
     values_greater_than_delineator = self.top_char_occurances
     secret_chars = convert_values_to_keys(values_greater_than_delineator)
-    "The secret word is 'cat' :)"
+    "The secret word is '#{secret_chars.join}' :)"
   end
 end
